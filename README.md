@@ -1,10 +1,7 @@
-#Mars DB
-A distributed key-value store built on top f levelDB on Go
+# Mars DB
+A high performant,distributed, persistent key value store. Roadmao and more details on it to be out soon.
 
-###Requirements
+### Requirements
 |Framework/Dependencies | Version|
 | :--- | :--- |
 | Go | 1.10+ |
-
-
-Wrapped around Gin Http Server on top of LevelDB
