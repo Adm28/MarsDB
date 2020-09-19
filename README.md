@@ -11,10 +11,9 @@ This key-value store is suitable to build OLTP database on top of it.
 __________________________
 
 ### Distributed
-- [] Implement Hash Partioning and Range Partioning
-- [] Implement Raft Consensus
+- [ ] Implement Hash Partioning and Range Partioning
+- [ ] Implement Raft Consensus
 
 ### Performance
-- [] Decide the caching policy and implement caching
-- [] Decide the compaction policy
-
+- [ ] Decide the caching policy and implement caching
+- [ ] Decide the compaction policy
