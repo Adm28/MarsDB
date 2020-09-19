@@ -1,6 +1,7 @@
 # Mars DB
 A distributed,persistant key-value store built on top of levelDB in Go.
-Wrapped around nin gin server
+This key-value store is suitable to build OLTP database on top of it.
+
 ## Requirements
 |Framework/Dependencies | Version|
 | :--- | :--- |
