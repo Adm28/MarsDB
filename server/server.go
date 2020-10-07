@@ -5,7 +5,7 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"log"
 	"net/http"
-	"github.com/Adm28/MarsDB/Src/core/store"
+	"../core/store"
 	
 )
 
