@@ -1,19 +1,21 @@
 # Mars DB
-A distributed,persistant key-value store built on top of levelDB in Go.
-This key-value store is suitable to build OLTP database on top of it.
-
-## Requirements
-|Framework/Dependencies | Version|
-| :--- | :--- |
-| Go | 1.10+ |
+A distributed,persistant and fault tolerant  peer to peer key-value store built on top of levelDB.
+The purpose of building the key value store is to enhance my understanding of various storage techinqies
+and implement various distributed systems protocol.
 
 ## RoadMap
 __________________________
 
-### Distributed
-- [ ] Implement Hash Partioning and Range Partioning
-- [ ] Implement Raft Consensus
+### Core and Storage
+- [ ] Benchmark the reads and writes latency and ops/sec against different workloads
+- [ ] Employee caching technique to decrease write and append latency
+- [ ] Change the architecture of storage to improve the performance of writes and append operations.
 
-### Performance
-- [ ] Decide the caching policy and implement caching
-- [ ] Decide the compaction policy
+
+### Distributed 
+- [x ] Consistent hashing
+- [  ] Sharding
+- [  ] Replication across Nodes
+- [  ] Fault Tolerance
+- [  ] Range Paritioning
+

@@ -1,11 +1,27 @@
-package main
+package consistenthashring
 
 import (
   "fmt"
   "hash/crc32"
   "sort"
   "errors"
+  "log"
 )
+
+/*
+Todo
+Create an interface with common methods so that it's easier to implement different hashing poilicies
+
+List of Methods available after importing this package
+This package contains the implementatiopn of Consistent Hashing
+NewRing  - Allocates a  new ring and returns a pointer to that ring
+NewNode  - Allocates a new Node and returns the pointer to that node
+AddNode  - Adds the Node in the right position in the ring
+RemoveNode - Delets the Node from the Ring
+GetNode  - Hashes the key and returns the ip address of the Node to which the value has to be inserted
+
+*/
+
 type SearchIndexMessage struct {
   desc string;
   msgType int;
@@ -51,7 +67,6 @@ func searchIndex(nodes Nodes,hashID* uint32)(int,*SearchIndexMessage) {
 func (r* Ring) AddNode(id* string) {
   node := NewNode(id);
   idx,msg := searchIndex((*r).Nodes,&(*node).HashID);
- // fmt.Printf("Index : %d HashID:%d IPAddress:%s\n",idx,(*node).HashID,(*node).ID)
   (*r).Nodes = append((*r).Nodes,*node)
   nodesSlice := (*r).Nodes[:]
   lenNodes := len(nodesSlice)
@@ -65,7 +80,6 @@ func (r* Ring) AddNode(id* string) {
   } else if(msg.msgType == 1) {
       nodesSlice[len((*r).Nodes)-1] = *node
   }
-//  fmt.Println((*r).Nodes)
 }
 
 func (r* Ring) RemoveNode(node Node){ 
@@ -81,6 +95,7 @@ func (r* Ring) RemoveNode(node Node){
 }
 func (r *Ring) GetNode (key* string) (*Node,error) {
   hashedKey := generateHash(key)
+  log.Printf("Key : %s Generated Hash %s",key,hashedKey)
   // fmt.Printf("GetNode- Calculated Hashed Value %d",hashedKey)
   idx,msg := searchIndex(r.Nodes,&hashedKey)
   nodesArr := (*r).Nodes[:]
@@ -93,7 +108,9 @@ func (r *Ring) GetNode (key* string) (*Node,error) {
   }
 }
 
-func main () {
+
+
+/*func main () {
   ring := NewRing();
 
   members := []string{"127.0.0.1","127.0.0.2","127.0.0.3","127.0.0.4"};
@@ -110,4 +127,4 @@ func main () {
   ring.RemoveNode(ring.Nodes[0])
   ring.RemoveNode(ring.Nodes[0])
   //ring.RemoveNode(ring.Nodes[0])
-}
+}*/

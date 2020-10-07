@@ -5,6 +5,8 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 	"log"
 	"net/http"
+	"github.com/Adm28/MarsDB/Src/core/store"
+	
 )
 
 func ApiMiddleware(db *leveldb.DB) gin.HandlerFunc {
@@ -24,11 +26,12 @@ func main() {
 	db, err := leveldb.OpenFile("Node/LevelDB", nil)
 
 	if err != nil {
-		log.Fatal()
+		log.Fatal("Unable to Create Key Value Store")
 	}
+
 	defer db.Close()
 
-	router.Use(ApiMiddleware(db))
+	//router.Use(ApiMiddleware(db))
 	// Test API
 	router.GET("/v1/Ping", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{"message": "Ping Successful", "Status": "OK"})
